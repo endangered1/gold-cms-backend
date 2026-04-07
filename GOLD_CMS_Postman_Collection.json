@@ -1,0 +1,567 @@
+{
+  "info": {
+    "name": "GOLD CMS Backend - Frontend Handoff",
+    "_postman_id": "gold-cms-backend-frontend-handoff",
+    "description": "Postman collection for the GOLD CMS backend. Uses collection variables: baseUrl, adminToken, serviceSlug, serviceId, projectSlug, projectId, newsSlug, seoPageKey.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "adminToken",
+      "value": ""
+    },
+    {
+      "key": "serviceSlug",
+      "value": "mining-logistics"
+    },
+    {
+      "key": "serviceId",
+      "value": ""
+    },
+    {
+      "key": "projectSlug",
+      "value": "copper-mining-project-phase-2"
+    },
+    {
+      "key": "projectId",
+      "value": ""
+    },
+    {
+      "key": "newsSlug",
+      "value": "gold-announces-new-project"
+    },
+    {
+      "key": "seoPageKey",
+      "value": "home"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "GET Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/health"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Public APIs",
+      "item": [
+        {
+          "name": "GET Site Settings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/site/settings"
+          }
+        },
+        {
+          "name": "GET Navigation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/navigation"
+          }
+        },
+        {
+          "name": "GET Hero",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/hero"
+          }
+        },
+        {
+          "name": "GET Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/services"
+          }
+        },
+        {
+          "name": "GET Service By Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/services/{{serviceSlug}}"
+          }
+        },
+        {
+          "name": "GET Projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/projects"
+          }
+        },
+        {
+          "name": "GET Project By Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/projects/{{projectSlug}}"
+          }
+        },
+        {
+          "name": "GET Leadership",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/leadership"
+          }
+        },
+        {
+          "name": "GET News",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/news"
+          }
+        },
+        {
+          "name": "GET News By Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/news/{{newsSlug}}"
+          }
+        },
+        {
+          "name": "GET Investor Overview",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/investors/overview"
+          }
+        },
+        {
+          "name": "GET Investor Resources",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/investors/resources"
+          }
+        },
+        {
+          "name": "GET ESG",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/esg"
+          }
+        },
+        {
+          "name": "GET Offices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/offices"
+          }
+        },
+        {
+          "name": "GET SEO By Page Key",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/seo/{{seoPageKey}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth and Admin",
+      "item": [
+        {
+          "name": "POST Login Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"superadmin@gold.com\",\n  \"password\": \"yourpassword\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        },
+        {
+          "name": "POST Create Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Content Admin\",\n  \"email\": \"admin@gold.com\",\n  \"password\": \"Admin12345\",\n  \"role\": \"admin\"\n}"
+            },
+            "url": "{{baseUrl}}/api/admins"
+          }
+        }
+      ]
+    },
+    {
+      "name": "CMS Write APIs",
+      "item": [
+        {
+          "name": "POST Site Settings",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyName\": \"GOLD \\u2013 Global Ore Logistics & Development, LLC\",\n  \"tagline\": \"Driving value through mining, logistics, and development\",\n  \"primaryEmail\": \"info@gold.com\",\n  \"primaryPhone\": \"+92-300-0000000\",\n  \"address\": \"Islamabad, Pakistan\",\n  \"logoUrl\": \"https://example.com/logo.png\",\n  \"footerText\": \"\\u00a9 2026 GOLD. All rights reserved.\"\n}"
+            },
+            "url": "{{baseUrl}}/api/site/settings"
+          }
+        },
+        {
+          "name": "POST Navigation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"Services\",\n  \"path\": \"/services\",\n  \"order\": 3,\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/navigation"
+          }
+        },
+        {
+          "name": "POST Hero",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Empowering Global Mining Excellence\",\n  \"subtitle\": \"Driving innovation in ore logistics and development\",\n  \"imageUrl\": \"https://example.com/hero1.jpg\",\n  \"ctaText\": \"Learn More\",\n  \"ctaLink\": \"/about\",\n  \"order\": 1,\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/hero"
+          }
+        },
+        {
+          "name": "POST Service",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Mining Logistics\",\n  \"shortDescription\": \"Efficient ore transportation and logistics support.\",\n  \"fullDescription\": \"We provide end-to-end logistics solutions for mining operations.\",\n  \"imageUrl\": \"\",\n  \"iconUrl\": \"\",\n  \"order\": 1,\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/services"
+          }
+        },
+        {
+          "name": "PUT Service",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Mining Logistics\",\n  \"shortDescription\": \"Updated logistics support for mining operations.\",\n  \"fullDescription\": \"Updated full description for mining logistics.\",\n  \"order\": 1,\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/services/{{serviceId}}"
+          }
+        },
+        {
+          "name": "DELETE Service",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/services/{{serviceId}}"
+          }
+        },
+        {
+          "name": "POST Project",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Copper Mining Project Phase 2\",\n  \"summary\": \"Expansion of existing copper mining operations.\",\n  \"detailedBody\": \"This phase focuses on increasing extraction capacity and improving logistics.\",\n  \"location\": \"Balochistan, Pakistan\",\n  \"region\": \"South Asia\",\n  \"commodity\": \"Copper\",\n  \"projectStatus\": \"Ongoing\",\n  \"coverImage\": \"https://example.com/project-cover.jpg\",\n  \"gallery\": [],\n  \"latitude\": 28.4907,\n  \"longitude\": 65.0958,\n  \"order\": 1,\n  \"isFeatured\": true,\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/projects"
+          }
+        },
+        {
+          "name": "PUT Project",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Copper Mining Project Phase 2\",\n  \"summary\": \"Updated project summary.\",\n  \"projectStatus\": \"Completed\",\n  \"order\": 2,\n  \"isFeatured\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/projects/{{projectId}}"
+          }
+        },
+        {
+          "name": "DELETE Project",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/projects/{{projectId}}"
+          }
+        },
+        {
+          "name": "POST Leadership",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"designation\": \"Chief Executive Officer\",\n  \"imageUrl\": \"https://example.com/leader.jpg\",\n  \"bio\": \"Experienced executive in mining and logistics.\",\n  \"statement\": \"Building sustainable value through disciplined execution.\",\n  \"linkedinUrl\": \"https://linkedin.com/in/johndoe\",\n  \"order\": 1,\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/leadership"
+          }
+        },
+        {
+          "name": "POST News",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"GOLD Announces New Project\",\n  \"summary\": \"A new project has been announced.\",\n  \"body\": \"Detailed news article body goes here.\",\n  \"featuredImage\": \"https://example.com/news.jpg\",\n  \"author\": \"Admin\",\n  \"tags\": [\n    \"announcement\",\n    \"project\"\n  ],\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/news"
+          }
+        },
+        {
+          "name": "POST Investor Overview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Investor Overview\",\n  \"description\": \"Overview content for investors.\",\n  \"highlights\": [\n    \"Strong project pipeline\",\n    \"Sustainable growth strategy\"\n  ]\n}"
+            },
+            "url": "{{baseUrl}}/api/investors/overview"
+          }
+        },
+        {
+          "name": "POST Investor Resource",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Annual Report 2025\",\n  \"category\": \"report\",\n  \"fileUrl\": \"https://example.com/reports/annual-report-2025.pdf\",\n  \"description\": \"Annual report for 2025.\",\n  \"documentYear\": 2025,\n  \"isFeatured\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/investors/resources"
+          }
+        },
+        {
+          "name": "POST ESG",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sustainability and ESG\",\n  \"description\": \"Our ESG commitments and sustainability goals.\",\n  \"metrics\": [\n    {\n      \"label\": \"Local Jobs\",\n      \"value\": \"500+\"\n    },\n    {\n      \"label\": \"Compliance\",\n      \"value\": \"100%\"\n    }\n  ]\n}"
+            },
+            "url": "{{baseUrl}}/api/esg"
+          }
+        },
+        {
+          "name": "POST Office",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"officeName\": \"Islamabad Office\",\n  \"address\": \"Blue Area, Islamabad, Pakistan\",\n  \"phone\": \"+92-51-0000000\",\n  \"email\": \"islamabad@gold.com\",\n  \"mapUrl\": \"https://maps.google.com\",\n  \"workingHours\": \"Mon-Fri 9:00 AM - 6:00 PM\",\n  \"order\": 1,\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/offices"
+          }
+        },
+        {
+          "name": "POST SEO",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pageKey\": \"home\",\n  \"metaTitle\": \"GOLD - Global Ore Logistics & Development\",\n  \"metaDescription\": \"Corporate mining and logistics solutions.\",\n  \"ogImage\": \"https://example.com/og-home.jpg\"\n}"
+            },
+            "url": "{{baseUrl}}/api/seo"
+          }
+        },
+        {
+          "name": "POST Contact Submission",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Frontend Developer\",\n  \"email\": \"frontend@example.com\",\n  \"phone\": \"+92-300-1234567\",\n  \"company\": \"GOLD\",\n  \"subject\": \"Frontend integration\",\n  \"message\": \"Testing contact form integration.\"\n}"
+            },
+            "url": "{{baseUrl}}/api/contact"
+          }
+        }
+      ]
+    }
+  ]
+}
